@@ -154,7 +154,9 @@ func ConfigToTLSConfig(c *TLSStruct) (*tls.Config, error) {
 	switch c.ClientAuth {
 	case "RequestClientCert":
 		cfg.ClientAuth = tls.RequestClientCert
-	case "RequireClientCert":
+	case "RequireClientCert": // Preserved for backwards compatibility.
+		cfg.ClientAuth = tls.RequireAnyClientCert
+	case "RequireAnyClientCert":
 		cfg.ClientAuth = tls.RequireAnyClientCert
 	case "VerifyClientCertIfGiven":
 		cfg.ClientAuth = tls.VerifyClientCertIfGiven
